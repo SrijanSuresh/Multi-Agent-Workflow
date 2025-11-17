@@ -3,10 +3,13 @@
 <div align="center">
 <strong>OOP-first scaffold for an LLM↔LLM ring: <code>LLM1 → LLM2 → LLM3 → LLM1 → …</code> until critic + agreement rules pass.</strong>
 </div>
-
 > Status: **v0 prototype** – only minimal ring (mock agents + consensus) implemented. Remaining modules are planned (see Roadmap).
 
 ---
+<img width="1170" height="799" alt="image" src="https://github.com/user-attachments/assets/38d41818-6567-46a6-8d6c-4b3c645fdcd1" />
+
+`In this workflow, the API accepts a user prompt and hands off to a worker that runs the ring scheduler; API and worker use a cache for idempotency, short‑lived turn state, and rate limits, while a db persists runs, messages, decisions, and metrics. Inside the red loop, Coordinator → Planner → Retriever → Critic exchange Message objects; Tools (search, RAG, OCR, vision) sit beside them and are fronted by a cache to memoize retrieval and tool results, with a db beneath Tools for retrieval stores or artifact pointers. The Critic updates common ground, and the scheduler checks agreement; when accepted, results are finalized and written to the db.`
+
 
 ## Table of Contents
 1. [Concept Overview](#concept-overview)
@@ -15,7 +18,6 @@
 4. [Core Contracts](#core-contracts)
 5. [Development Workflow](#development-workflow)
 6. [Quickstart](#quickstart)
-7. [Observability & Safety](#observability--safety)
 8. [Roadmap & Status](#roadmap--status)
 9. [Extending the System](#extending-the-system)
 10. [Testing Strategy](#testing-strategy)
